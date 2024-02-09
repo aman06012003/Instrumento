@@ -11,10 +11,10 @@ model = load_model('Intru_model.h5')
 
 
 def preprocess_custom_audio(file_path):
-    y,sr = librosa.load(str(file_path), sr=22050, mono=True)  # Adjust parameters as needed
-    mel_spectrogram = librosa.feature.melspectrogram(y=y, sr=22050, n_mels=128, hop_length=512)
+    y,sr = librosa.load(str(file_path),sr = None ,mono=True)  # Adjust parameters as needed
+    mel_spectrogram = librosa.feature.melspectrogram(y=y, sr=None, n_mels=128, hop_length=512)
     mel_spectrogram = librosa.power_to_db(mel_spectrogram, ref=np.max)
-    mfccs = librosa.feature.mfcc(y=y, sr=22050, n_mfcc=13)
+    mfccs = librosa.feature.mfcc(y=y, sr=None, n_mfcc=13)
     mfccs_processed = np.mean(mfccs.T, axis=0)
     return mfccs_processed,  mel_spectrogram
 
