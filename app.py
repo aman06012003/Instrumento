@@ -37,5 +37,7 @@ if uploaded_file is not None:
 
     # Get the predicted label
     pseudo_label = np.argmax(predictions)
-
-    st.success(f"Predicted Label: {pseudo_label}")
+    output = ["Accordion","Alto Saxophone","Bass Tuba","Bassoon","Cello","Clarinet","Contrabass","Flute","French Horn","Oboe","Trombone","Trumpet","Viola","Violin"]
+    if st.button("Predict"):
+        st.success(f"Predicted Instrument: {output[pseudo_label]}")
+        
