@@ -23,7 +23,12 @@ uploaded_file = st.file_uploader("Choose a WAV file", type=["wav"])
 
 if uploaded_file is not None:
     # Preprocess the audio file
-    feature_extracted, _ = preprocess_custom_audio(uploaded_file)
+    temp_file_path = "temp.wav"
+    with open(temp_file_path, "wb") as temp_file:
+        temp_file.write(uploaded_file.read())
+
+# Preprocess the audio file
+    feature_extracted, _ = preprocess_custom_audio(temp_file_path)
     feature_extracted = np.array(feature_extracted)
     feature_extracted = feature_extracted.reshape(1, feature_extracted.shape[0], 1)
 
